@@ -25,3 +25,18 @@ function showSlides() {
     // Change image every 5 seconds
     setTimeout(showSlides, 5000); 
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle classes
+            navMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+        });
+    }
+});

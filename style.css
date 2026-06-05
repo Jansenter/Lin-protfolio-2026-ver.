@@ -1,40 +1,58 @@
-/* 全局基础设置 */
-body {
-    /* 使用典型的极简非衬线字体族 */
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased; /* 让字体在 Mac 上看起来更细更锐利 */
-    line-height: 1.5;
-    color: #000;
+/* ==========================================================================
+   1. GLOBAL STYLES & RESET
+   ========================================================================== */
+* {
+    box-sizing: border-box;
     margin: 0;
-    display: flex;
-    font-weight: 300; /* 使用细字重，不要 bold */
+    padding: 0;
 }
 
-/* 侧边栏布局 */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    color: #000;
+    display: flex; /* Kept side-by-side flex layout for desktop */
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   2. SIDEBAR LAYOUT (DESKTOP DEFAULT)
+   ========================================================================== */
 aside {
     width: 300px;
     height: 100vh;
     padding: 60px 40px;
     position: fixed;
-    /* 取消边框，Kevin 的网站通常靠留白区分空间 */
+    background: #fff;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }
 
-/* 标题样式：名字与 Work Archive 在同一行 */
+/* Container to handle alignment of Title + Toggle Button */
+.aside-header {
+    display: block;
+}
+
 h1 {
-    font-size: 18px; /* 较小的字号是极简风的关键 */
-    font-weight: 400; /* 正常字重，不加粗 */
-    letter-spacing: 0.15em; /* 拉开字母间距 */
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 50px;
 }
 
 .subtitle {
-    color: #999; /* 副标题颜色稍淡 */
-    margin-left: 10px; /* 与名字保持一定距离 */
+    color: #999;
+    margin-left: 10px;
     font-weight: 300;
 }
 
-/* 导航链接样式 */
+/* Navigation Menu Grouping */
+.nav-menu {
+    margin-top: 50px;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -57,40 +75,47 @@ nav a:hover {
     color: #000;
 }
 
-/* 主内容区 */
+/* Hide mobile toggle layout features on Desktop */
+.menu-toggle {
+    display: none;
+}
+
+/* ==========================================================================
+   3. MAIN CONTENT AREAS (DESKTOP DEFAULT)
+   ========================================================================== */
 main {
     margin-left: 340px;
     padding: 60px 80px;
-    max-width: 700px;
+    max-width: 900px;
+    width: 100%;
 }
 
 .bio p {
     margin-bottom: 20px;
+    max-width: 700px;
 }
 
-
-/* 针对 Bio 中的链接样式 */
 .bio a {
-    color: #666; /* 保持黑色，或者你可以用 #666 */
-    text-decoration: none; /* 加上下划线，或者改为 none 保持纯净 */
-    text-underline-offset: 3px; /* 让下划线离文字远一点，增加呼吸感 */
+    color: #666;
+    text-decoration: none;
+    text-underline-offset: 3px;
     transition: opacity 0.2s;
 }
 
 .bio a:hover {
-    opacity: 0.6; /* 鼠标悬停时变淡，增加交互感 */
+    opacity: 0.6;
 }
 
 /* Slideshow Section */
 .slideshow-container {
     width: 80%;
     position: relative;
-    margin-top: 80px; /* Space between bio and images */
+    margin-top: 80px;
     margin-bottom: 100px;
 }
 
 .slide {
-    display: none; /* Controlled by JS */
+    display: none; /* Controlled by JavaScript */
 }
 
 .slide img {
@@ -98,69 +123,59 @@ main {
     height: auto;
     display: block;
     filter: opacity(90%);
-    /* Optional: filter: grayscale(100%); if you want that ultra-minimal look */
 }
 
-/* Smooth Fade Transition */
 .fade {
     animation-name: fade;
-    animation-duration: 2.5s; /* Slower, more atmospheric fade */
+    animation-duration: 2.5s;
 }
 
 @keyframes fade {
-    from {opacity: .2} 
-    to {opacity: 1}
+    from { opacity: .2; } 
+    to { opacity: 1; }
 }
 
-
-/* for Writing page */
-
-/* 1. 加大列表整体的行间距 */
-
+/* ==========================================================================
+   4. ART WRITING PAGE STYLES
+   ========================================================================== */
 .archive-list {
-    list-style: none; /* 彻底移除点 */
-    padding: 0;       /* 移除左侧缩进，确保与侧边栏对齐 */
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
 
 .archive-list li {
     font-size: 14px;
-    margin-bottom: 28px; /* 增加每一项之间的距离 */
-    line-height: 1.8;    /* 增加单行内的行高 */
-    letter-spacing: 0.05em; /* 增加字符间距，让标题更舒展 */
+    margin-bottom: 28px;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
 }
 
-/* 2. 针对日期进行微调 */
 .archive-list .date {
     display: inline-block;
-    width: 70px;         /* 稍微加宽以适应字符间距 */
+    width: 70px;
     color: #3d3a3a;
     font-size: 12px;
-    letter-spacing: 0.1em; /* 让年份看起来更有呼吸感 */
+    letter-spacing: 0.1em;
 }
 
-/* 3. 针对文章标题链接的微调 */
 .archive-list a {
     border-bottom: 1px solid #eee;
-    padding-bottom: 2px; /* 让下划线离文字远一点 */
+    padding-bottom: 2px;
 }
 
-/* 4. (可选) 加大页面顶部的标题间距 */
 .writing-list .section-title {
-    letter-spacing: 0.2em; /* 让 "SELECTED WRITING" 看起来更开阔 */
+    letter-spacing: 0.2em;
     margin-bottom: 45px;
 }
 
-
-/* --- Curation Grid Layout --- */
-
-/* --- Curation Grid Layout --- */
-
+/* ==========================================================================
+   5. CURATION GRID LAYOUT
+   ========================================================================== */
 .curation-grid {
     display: grid;
-    /* 默认两列，如果屏幕太窄会自动变成一列 */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 60px 40px; /* 行间距 60px，列间距 40px */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
     margin-top: 20px;
 }
 
@@ -172,9 +187,8 @@ main {
 
 .image-container {
     width: 100%;
-    /* 建议所有 Cover 图片剪裁成统一比例，如 3:2 或 4:5 */
-    aspect-ratio: 3/ 2; 
-    background-color: #f7f7f7; 
+    aspect-ratio: 3 / 2;
+    background-color: #f7f7f7;
     overflow: hidden;
     margin-bottom: 20px;
 }
@@ -183,19 +197,18 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* 极简风格常用的淡入效果 */
     opacity: 0.9;
     transition: opacity 0.4s ease, transform 0.6s ease;
 }
 
 .exhibition-item:hover img {
     opacity: 1;
-    transform: scale(1.02); /* 悬停时轻微放大，增加交互感 */
+    transform: scale(1.02);
 }
 
 .exhibition-info {
     font-size: 12px;
-    letter-spacing: 0.1em; /* 呼应你之前要求的字符间距 */
+    letter-spacing: 0.1em;
     line-height: 1.6;
     text-transform: uppercase;
 }
@@ -206,25 +219,17 @@ main {
 }
 
 .exhibition-year {
-    color: #bbb; /* 年份使用淡灰色 */
+    color: #bbb;
     margin-top: 4px;
 }
 
-/* 响应式：针对手机用户改为单列 */
-@media (max-width: 800px) {
-    .curation-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-
-/* --- Project Detail Page Styles --- */
-
+/* ==========================================================================
+   6. PROJECT DETAIL PAGE STYLES
+   ========================================================================== */
 .project-page {
-    max-width: 900px; /* 限制宽度，防止文字排版过宽 */
+    max-width: 900px;
     margin-top: 20px;
-    animation: fadeIn 0.8s ease; /* 简单的页面淡入效果 */
+    animation: fadeIn 0.8s ease;
 }
 
 @keyframes fadeIn {
@@ -262,13 +267,13 @@ main {
     letter-spacing: 0.05em;
     margin-bottom: 80px;
     color: #333;
-    max-width: 700px; /* 让文字部分更窄一些，方便阅读 */
+    max-width: 700px;
 }
 
 .project-gallery {
     display: flex;
     flex-direction: column;
-    gap: 40px; /* 大图之间的垂直间距 */
+    gap: 40px;
 }
 
 .project-gallery img {
@@ -277,20 +282,12 @@ main {
     display: block;
 }
 
-/* 适配移动端 */
-@media (max-width: 768px) {
-    .project-title { font-size: 20px; }
-    .project-description { margin-bottom: 50px; }
-}
-
-
-/*online viewing room */
-
-/* Container spacing and background match */
+/* ==========================================================================
+   7. ONLINE VIEWING ROOM BANNER
+   ========================================================================== */
 .viewing-room-section {
     margin: 40px 0;
     text-align: center;
-    font-family: sans-serif; /* Adjust to match your archive font */
 }
 
 .viewing-room-section .section-title {
@@ -300,19 +297,15 @@ main {
     color: #333;
 }
 
-/* The Banner Canvas */
 .viewing-room-banner {
     position: relative;
-    width: 110%;
-    max-width: 10000px; /* Limits width so it stays crisp */
-    height: 350px; /* Controls how tall the section is */
+    width: 100%;
+    max-width: 1000px;
+    height: 350px;
     margin: 0 auto;
-    
-    /* Replace 'your-image-path.jpg' with your downloaded banner image file */
-    background-image: url('images/Art-or-Algorithm/Art-or-Algorithm2.jpeg'); 
+    background-image: url('images/Art-or-Algorithm/Art-or-Algorithm2.jpeg');
     background-size: cover;
     background-position: center;
-    
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -320,17 +313,15 @@ main {
     padding: 40px;
 }
 
-/* Left Title Text over the image */
 .banner-heading {
     color: #ffffff;
     font-size: 1.8rem;
     font-weight: normal;
     margin: 0;
-    align-self: flex-start; /* Keeps it near the top left */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* Makes text readable against a light sky */
+    align-self: flex-start;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* The Dark Call-to-Action Card */
 .action-card {
     background-color: #1a1a1a;
     color: #ffffff;
@@ -348,7 +339,6 @@ main {
     color: #e0e0e0;
 }
 
-/* The White Interactive Button */
 .enter-btn {
     display: flex;
     justify-content: space-between;
@@ -357,7 +347,7 @@ main {
     color: #000000;
     text-decoration: none;
     padding: 12px 20px;
-    border: 2px solid #3b82f6; /* Subtle blue outline matching your image focus border */
+    border: 2px solid #3b82f6;
     font-weight: bold;
     font-size: 0.95rem;
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -371,48 +361,138 @@ main {
     font-size: 1.2rem;
 }
 
-
-/* Responsive adjustments for mobile */
-
-
-/* ==========================================
-   下面这些是针对手机端的特殊样式（屏幕小于768px时生效）
-   ========================================== */
+/* ==========================================================================
+   8. COMPREHENSIVE RESPONSIVE MOBILE MEDIA QUERY (Screens <= 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
-    
-    /* 1. 让侧边栏(aside)和主内容区(main)从“左右并排”变成“上下堆叠” */
     body {
-        display: block; /* 或者 flex-direction: column */
+        display: block; /* Break desktop side-by-side configuration */
     }
-    
+
+    /* Transform left sidebar into fixed top navigation bar */
     aside {
         width: 100%;
-        position: static; /* 如果你之前固定了侧边栏，手机端要放开 */
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
         padding: 20px;
-    }
-    
-    main {
-        margin-left: 0; /* 取消左边为侧边栏留出的空隙 */
-        padding: 15px;
+        border-bottom: 1px solid #eee;
+        display: block;
     }
 
-    /* 2. 让项目画廊里的图片从几列并排，变成手机上整齐的一列 */
+    /* Set up responsive top row: Title on Left, Hamburger Button on Right */
+    .aside-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 14px; /* Scaled down slightly for mobile layout constraints */
+        letter-spacing: 0.1em;
+    }
+
+    /* Hide links menu dynamically on mobile by default */
+    .nav-menu {
+        display: none;
+        margin-top: 0;
+        padding: 20px 0 10px 0;
+        width: 100%;
+    }
+
+    /* Class added by Javascript to open/close menu toggle */
+    .nav-menu.active {
+        display: block;
+    }
+
+    nav li {
+        margin-bottom: 16px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    /* Minimalist Hamburger Button Details */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .hamburger {
+        display: block;
+        width: 20px;
+        height: 1px;
+        background: #000;
+        position: relative;
+    }
+
+    .hamburger::before,
+    .hamburger::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 1px;
+        background: #000;
+        left: 0;
+    }
+
+    .hamburger::before { top: -6px; }
+    .hamburger::after { bottom: -6px; }
+
+    /* Main view container adjustments to prevent content layout clipping */
+    main {
+        margin-left: 0;
+        margin-top: 80px; /* Offset spacing matching top bar height */
+        padding: 30px 20px;
+    }
+
+    .slideshow-container {
+        width: 100%;
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    /* Content Layout Grids adapted for single column phone viewports */
+    .curation-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .project-title {
+        font-size: 20px;
+    }
+
+    .project-description {
+        margin-bottom: 50px;
+    }
+
     .project-gallery img {
         width: 100%;
         height: auto;
         margin-bottom: 15px;
     }
 
-    /* 3. 我们刚写的 Vortic 线上展厅横幅，在手机上要变窄，且里面的卡片要变成上下结构 */
+    /* Interactive Viewing room responsive layout structural shifts */
     .viewing-room-banner {
         flex-direction: column;
         height: auto;
         padding: 20px;
         align-items: flex-start;
+        width: 100%;
+    }
+
+    .banner-heading {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
     }
 
     .action-card {
-        width: 100%; /* 卡片撑满整行 */
+        width: 100%;
         margin-top: 20px;
     }
 }

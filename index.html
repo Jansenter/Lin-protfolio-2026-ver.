@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Highlight: Enhanced viewport meta tag to prevent automatic zooming on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LIN LI | Official Site & Work Archive</title>
 
     <!-- 引入外部 CSS 文件 -->
@@ -12,8 +13,15 @@
 
 <body>
     <aside>
-        <h1>LIN LI <span class="subtitle">WORK ARCHIVE | PORTFOLIO</span></h1>
-        <nav>
+        <div class="aside-header">
+            <h1>LIN LI <span class="subtitle">WORK ARCHIVE | PORTFOLIO</span></h1>
+            <!-- Highlight: Added a mobile menu toggle button -->
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+        <!-- Highlight: Added 'nav-menu' class for targeted mobile styling -->
+        <nav class="nav-menu">
             <ul>
                 <li><a href="curation.html">Curation</a></li>
                 <li><a href="writing.html">Art Writing</a></li>
@@ -24,7 +32,7 @@
 
     <main>
         <section class="bio">
-            <p>Lin Li (they/them, she/her) is a writer, art addministrator and independent curator based in so-called
+            <p>Lin Li (they/them, she/her) is a writer, art administrator and independent curator based in so-called
                 "Vancouver", on the ancestral and unceded territories of the xʷməθkʷəy̓əm (Musqueam),
                 Sḵwx̱wú7mesh (Squamish), and səlilwətaɬ (Tsleil-Waututh) Nations. Their curatorial interests
                 encompass a variety of topics, such as the decolonization and decentralization of Asian art, the
@@ -39,11 +47,9 @@
             <p>As an art writer, their reviews, interviews, and essays have appeared in Border Crossings, Galleries
                 West, Reissue Magazine, Akimbo Art, and Yishu Magazine. Lin holds a Master's degree in East Asian
                 Studies from the University of Alberta</p>
-
         </section>
 
-
-        <!-- Slideshow moved here -->
+        <!-- Slideshow container -->
         <section class="slideshow-container">
             <div class="slide fade">
                 <img src="images/slides/being nowhere and everywhere.jpg" alt="being nowhere and everywhere">
@@ -56,14 +62,10 @@
             </div>
         </section>
 
+        <!-- Highlight: Cleaned up the duplicate / misnested curation sections from your original snippet -->
         <section id="curation" class="work-grid">
             <!-- Future projects -->
         </section>
-    </main>
-
-    <section id="curation" class="work-grid">
-        <!-- 你的策展项目 -->
-    </section>
     </main>
 
     <!-- 在 body 结束前引入外部 JS 文件 -->
